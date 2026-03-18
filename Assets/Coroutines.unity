@@ -596,6 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65412a6d54309d04c9cd04847dd09903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grower
+  tree: {fileID: 850960374}
+  apple: {fileID: 411304897}
 --- !u!1 &850960372
 GameObject:
   m_ObjectHideFlags: 0
