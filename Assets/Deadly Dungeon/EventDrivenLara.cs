@@ -24,7 +24,7 @@ public class EventDrivenLara : MonoBehaviour
     public UnityEvent<float> SetupSwimTimer; //pass max timer value. Use to set value to 0, max value, hide slider
     public UnityEvent StartSwimTimer;
     public UnityEvent StopSwimTimer;
-    
+
 
     void Start()
     {

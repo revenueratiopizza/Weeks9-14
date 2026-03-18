@@ -14,7 +14,7 @@ public class Hazard : MonoBehaviour
     {
         wasInHazardLastFrame = isInHazard;
         bool isInHazardThisFrame = false; //this is how we tell if the in hazard never got triggered this frame
-        foreach(SpriteRenderer sr in hazardSRs)
+        foreach (SpriteRenderer sr in hazardSRs)
         {
             if (sr.bounds.Contains(transform.position))
             {

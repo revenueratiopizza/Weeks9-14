@@ -60,7 +60,7 @@ public class ModularSliderVisuals : MonoBehaviour
         {
             slider.value += Time.deltaTime;
 
-            if(slider.value >= slider.maxValue)
+            if (slider.value >= slider.maxValue)
             {
                 TimeIsUp.Invoke();
                 StopTimer();
