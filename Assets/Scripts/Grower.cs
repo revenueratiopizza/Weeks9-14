@@ -4,7 +4,9 @@ public class Grower : MonoBehaviour
 {
     public Transform tree;  // First initializing the transform functions for objects
     public Transform apple; // so we can use them to make them transform and grow
-    public Coroutine initGrowCoroutine;
+    public Coroutine initAllGrow;
+    public Coroutine initTreeGrow;
+    public Coroutine initAppleGrow;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,14 +15,18 @@ public class Grower : MonoBehaviour
     }
     public void StartGrow()
     {
-        if (initGrowCoroutine != null)
-        { StopCoroutine(initGrowCoroutine); } // Ensure coroutine is stopped before starting a new one
-        initGrowCoroutine = StartCoroutine(GrowCombo()); // Yield return cannot be in a public void
-    }                                                    // so I have to call them in a separate IEnumerator
+        if (initAllGrow != null)
+        { StopCoroutine(initAllGrow); } // Ensure coroutine is stopped before starting a new one
+        if (initTreeGrow != null)
+        { StopCoroutine(initTreeGrow); } // Stop tree and apple separately as well
+        if (initAppleGrow != null)
+        { StopCoroutine(initAppleGrow); }
+        initAllGrow = StartCoroutine(GrowCombo()); // Yield return cannot be in a public void
+    }                                              // so I have to call them in a separate IEnumerator
     IEnumerator GrowCombo()
     {
-        yield return StartCoroutine(GrowTree());  // This can also be done in quotes as long as you spell it EXACTLY right
-        yield return StartCoroutine(GrowApple()); // It's always better to make sure you have a safety net when you do this stuff
+        yield return initTreeGrow = StartCoroutine(GrowTree());   // This can also be done in quotes as long as you spell it EXACTLY right
+        yield return initAppleGrow = StartCoroutine(GrowApple()); // It's always better to make sure you have a safety net when you do this stuff
     }
     IEnumerator GrowTree()
     {
