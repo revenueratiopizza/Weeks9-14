@@ -38,7 +38,7 @@ public class Fire : MonoBehaviour
         // Then turn off cha cha neutral and turn on cha cha fire
         // Else turn on cha cha neutral and turn off cha cha fire
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
             rNeut.SetActive(false);
             rFire.SetActive(true);
