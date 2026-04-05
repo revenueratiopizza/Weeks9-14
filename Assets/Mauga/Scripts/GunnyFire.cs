@@ -8,14 +8,19 @@ public class GunnyFire : MonoBehaviour
     public GameObject gNeut;
     public GameObject gFire;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        // I don't think we need anything in here right now
-    }
-
     public void Gunny(InputAction.CallbackContext context)
     {
-        print("Hello");
+        if (context.started) // Check for if the input action "started" (or if you clicked)
+        {
+            gNeut.SetActive(false);
+            gFire.SetActive(true);
+        }
+
+        if (context.canceled) // Check for button released
+        {
+            gNeut.SetActive(true);
+            gFire.SetActive(false);
+        }
+        // This is only for setting up sprites. Other gameplay logic will come later
     }
 }
