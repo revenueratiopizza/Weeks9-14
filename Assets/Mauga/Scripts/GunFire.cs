@@ -15,6 +15,12 @@ public class GunFire : MonoBehaviour
     public float meleeTargetTime = 0.5f;
     public bool meleeActive = false;
     public float pulseTargetTime = 3f;
+    public float fireRepeatRate = 0.1f;
+
+    IEnumerator BulletFire()
+    {
+
+    }
 
     public void Gunny(InputAction.CallbackContext context)
     {
@@ -24,6 +30,7 @@ public class GunFire : MonoBehaviour
             {
                 gNeut.SetActive(false);
                 gFire.SetActive(true);
+                StartCoroutine(BulletFire());
             }
         }
 
