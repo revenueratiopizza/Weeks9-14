@@ -7,19 +7,30 @@ public class GunFire : MonoBehaviour
     // I want to make game objects to call switching between fire sprite and neutral sprite
     public GameObject gNeut;
     public GameObject gFire;
+    public GameObject gbFire;
     public GameObject cNeut;
     public GameObject cFire;
+    public GameObject cbFire;
     public GameObject mFire;
     public GameObject pulse;
     public GameObject charge;
     public float meleeTargetTime = 0.5f;
     public bool meleeActive = false;
     public float pulseTargetTime = 3f;
-    public float fireRepeatRate = 0.1f;
+    public float fireDelayRate = 0.05f;
+    public bool gunnyActive = false;
+    public bool chachaActive = false;
 
-    IEnumerator BulletFire()
+    // Using an if statement here wouldn't work well since I need to check if it's active constantly
+    IEnumerator GunnyBulletFire()
     {
-
+        while (gunnyActive == true)
+        {
+            gbFire.SetActive(true);
+            yield return new WaitForSeconds(fireDelayRate);
+            gbFire.SetActive(false);
+            yield return new WaitForSeconds(fireDelayRate);
+        }
     }
 
     public void Gunny(InputAction.CallbackContext context)
@@ -28,9 +39,10 @@ public class GunFire : MonoBehaviour
         {
             if (meleeActive == false)
             {
+                gunnyActive = true;
                 gNeut.SetActive(false);
                 gFire.SetActive(true);
-                StartCoroutine(BulletFire());
+                StartCoroutine(GunnyBulletFire());
             }
         }
 
@@ -38,11 +50,23 @@ public class GunFire : MonoBehaviour
         {
             if (meleeActive == false)
             {
+                gunnyActive = false;
                 gNeut.SetActive(true);
                 gFire.SetActive(false);
             }
         }
         // This is only for setting up sprites. Other gameplay logic will come later
+    }
+
+    IEnumerator ChachaBulletFire()
+    {
+        while (chachaActive == true)
+        {
+            cbFire.SetActive(true);
+            yield return new WaitForSeconds(fireDelayRate);
+            cbFire.SetActive(false);
+            yield return new WaitForSeconds(fireDelayRate);
+        }
     }
     public void ChaCha(InputAction.CallbackContext context)
     {
@@ -50,8 +74,10 @@ public class GunFire : MonoBehaviour
         {
             if (meleeActive == false)
             {
+                chachaActive = true;
                 cNeut.SetActive(false);
                 cFire.SetActive(true);
+                StartCoroutine(ChachaBulletFire());
             }
         }
 
@@ -59,6 +85,7 @@ public class GunFire : MonoBehaviour
         {
             if (meleeActive == false)
             {
+                chachaActive = false;
                 cNeut.SetActive(true);
                 cFire.SetActive(false);
             }
